@@ -12,3 +12,6 @@ You can run Camel standalone using the `Main` class:
 And from a web browser open the following url:
 
     http://localhost:8080/hello
+<http://localhost:8080/hello>    
+
+To stop the example hit <kbd>ctrl</kbd>+<kbd>c</kbd>
