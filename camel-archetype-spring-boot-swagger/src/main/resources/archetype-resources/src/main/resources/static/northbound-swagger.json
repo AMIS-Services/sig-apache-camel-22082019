@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "chucknorris.io is a free JSON API for hand curated Chuck Norris facts.\n\nChuck Norris facts are satirical factoids about martial artist and actor Chuck Norris that have become an Internet phenomenon and as a result have become widespread in popular culture. The 'facts' are normally absurd hyperbolic claims about Norris' toughness, attitude, virility, sophistication, and masculinity.\n\nChuck Norris facts have spread around the world, leading not only to translated versions, but also spawning localized versions mentioning country-specific advertisements and other Internet phenomena. Allusions are also sometimes made to his use of roundhouse kicks to perform seemingly any task, his large amount of body hair with specific regard to his beard, and his role in the action television series Walker, Texas Ranger.",
+    "version": "2.0.0",
+    "title": "Chuck Norris IO",
+    "termsOfService": "https://api.chucknorris.io/",
+    "contact": {
+      "name": "Mathias Schilling",
+      "url": "https://www.matchilling.com",
+      "email": "m@matchilling.com"
+    },
+    "license": {
+      "name": "GNU General Public License v3.0",
+      "url": "https://github.com/chucknorris-io/chuck-api/blob/master/LICENSE"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/jokes/v1",
+  "paths": {
+    "/random": {
+      "get": {
+        "tags": [
+          "joke-controller"
+        ],
+        "summary": "getRandomJoke",
+        "operationId": "getRandomJokeUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Joke"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Joke": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "categories": {
+          "type": "array",
+          "description": "MailingList of categories.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-06-02 08:47:39.408742",
+          "description": "Timestamp when the joke was created."
+        },
+        "icon_url": {
+          "type": "string",
+          "example": "nzf46249t8cf7wgz3rf_rg",
+          "description": "Absolute URL of the Chuck Norris icon."
+        },
+        "id": {
+          "type": "string",
+          "example": "nzf46249t8cf7wgz3rf_rg",
+          "description": "URL-safe Base64-encoded UUID for a joke."
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2019-06-02 08:47:39.408742",
+          "description": "Timestamp when the joke was updated."
+        },
+        "url": {
+          "type": "string",
+          "example": "https://api.chucknorris.io/jokes/nzf46249t8cf7wgz3rf_rg",
+          "description": "Absolute URL of the joke."
+        },
+        "value": {
+          "type": "string",
+          "example": "Chuck Norris doesn't have disk latency because the hard drive knows to hurry the hell.",
+          "description": "The contents of an incredible funny joke."
+        }
+      },
+      "title": "Joke"
+    }
+  }
+}

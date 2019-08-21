@@ -1,0 +1,69 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: CamelSwaggerAPI
+  profiles:
+    active: dev
+  data:
+    mongodb:
+      uri: mongodb://dbuser:welcome1@ds163867.mlab.com:63867/pet-store
+
+# all access to actuator endpoints without security
+management:
+  security:
+    enabled: false
+  # expose actuator endpoint via HTTP for info,health,camelroutes
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  # show verbose health details (/actuator/info) so you can see Camel information also
+  endpoint:
+    hystrix:
+      stream:
+        enabled: true
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  # allow to obtain basic information about Camel routes (read only mode)
+    camelroutes:
+      enabled: true
+      read-only: true
+
+# Logging
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.web: INFO
+    org.apache.camel: DEBUG
+
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelSwaggerAPI
+  # to reconfigure the camel servlet context-path mapping to use /api/* instead of /camel/*
+  # needs to be in alignment with basePath in swagger definition
+  component:
+    servlet:
+      mapping:
+        context-path: /camel-api/*
+  # rest can also be configured here instead in the CamelRouter class
+  # rest DSL configuration
+  rest:
+    component: servlet
+    binding-mode: json
+    enable-cors: true
+    consumer-property:
+      bridgeErrorHandler: true
+  # jackson properties
+  dataformat:
+    json-jackson:
+      object-mapper: jacksonObjectMapper
+      disable-features: FAIL_ON_EMPTY_BEANS
+      pretty-print: true
+      include: NON_NULL

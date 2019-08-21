@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>amis.camel.archetypes</groupId>
+  <artifactId>camel-archetype-spring-boot-swagger</artifactId>
+  <name>Camel Swagger contract first :: Archetypes :: Spring Boot Based Router</name>
+  <description>Creates a new Camel project using Spring Boot.</description>
+  <packaging>maven-archetype</packaging>
+
+  <version>1.0.2</version>
+
+  <properties>
+    <maven-archetype-packaging-version>3.0.1</maven-archetype-packaging-version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+          <configuration>
+            <!-- Required so that .gitignore gets included in archetypes -->
+            <!-- see https://issues.apache.org/jira/browse/MRESOURCES-190 -->
+            <addDefaultExcludes>false</addDefaultExcludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>${maven-archetype-packaging-version}</version>
+      </extension>
+    </extensions>
+
+    <!-- include all resources but only filter archetype-metadata.xml -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources-filtered</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/archetype-metadata.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<settings>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://sonarqube:9000</sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
+    <mirrors>
+        <mirror>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus3:8081/repository/maven-public</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+    <servers>
+        <server>
+            <id>nexus</id>
+            <username>developer</username>
+            <password>developer123</password>
+        </server>
+    </servers>
+</settings>
